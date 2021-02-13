@@ -16,14 +16,14 @@ int main(void) {
 		long n = in;
 	
 		// First row
-		printf("\nDigits: \t ");
+		printf("\nDigits:      ");
 
 		for (int i = 0; i < 10; i++) {	
-			printf("\t %d",i);
+			printf("%4d",i);
 		}
 
 		// Second row
-		printf("\nOccurrences: \t"); 
+		printf("\nOccurrences: "); 
 		while (n > 0) {
 			digit = n % 10;
 			if (digit_seen[digit] > 0) {
@@ -34,7 +34,11 @@ int main(void) {
 		}
 	
 		for (int i = 0; i < 10; i++) {
-			printf("\t %d", digit_seen[i]);
+			if (digit_seen[i] > 0) {
+				printf("%4d", digit_seen[i]);
+			} else {
+				printf("    ");
+			}
 		}
 	
 		printf("\n\n\n");
