@@ -1,8 +1,8 @@
 #include <stdio.h>
 
 int main(void) {
-	int num1, denom1, num2, denom2;
-	float result_num, result_denom, decimal;
+	int num1, denom1, num2, denom2, result_num, result_denom;
+	float ncopy, dcopy, decimal;
 
 	// Task 2.
 	char addOrMult;
@@ -18,7 +18,7 @@ int main(void) {
 	scanf("%d / %d", &num2, &denom2);
 
 	if (addOrMult == 'a') {
-		result_num = num1 * denom2 + num2 * denom1;
+		result_num = (num1 * denom2) + (num2 * denom1);
 		result_denom = denom1 * denom2;
 	} else if (addOrMult == 'm') {
 		// Task 1.
@@ -26,10 +26,33 @@ int main(void) {
 		result_denom = denom1 * denom2;
 	}
 
+	int gcd = findGcd(result_num, result_denom);
+
+	result_num /= gcd;
+	result_denom /= gcd;
+
 	// Task 5.
-	decimal = result_num / result_denom;
-	printf("The result is %.0f/%.0f\n", result_num, result_denom);
+	
+	ncopy = result_num;
+	dcopy = result_denom;
+	decimal = ncopy / dcopy;
+
+	printf("The result is %d/%d\n", result_num, result_denom);
 	printf("... which is %.2f.\n", decimal);
 
 	return 0;
+}
+
+// Task 6: Euclidean algorithm
+int findGcd(int a, int b) {
+	// Debug
+	//printf("a %d b %d\n",a,b);
+
+	while (b > 0) {
+		int r = a % b;
+		a = b;
+		b = r;
+	}
+
+	return a;
 }
